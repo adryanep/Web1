@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <title>Validasi</title>
+</head>
+
+<body>
+    <div class="container">
+        <form name="formPendaftaran" action="daftar.php" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label>Nama Pelanggan : </label>
+                <input type="text" id="nama" class="form-control" maxlength="30" minlength="3">
+            </div>
+            <p style="display: none; background-color: red; color: white;"> Data tidak valid</p><br>
+            <div class="form-group">
+                <label>Email : </label>
+                <input type="email" id="email" class="form-control">
+                <small id="emailHelp" class="form-text text-muted">
+            </div>
+            <p style="display: none; background-color: red; color: white;"> Data tidak valid</p><br>
+            <div class="form-group">
+                <label>Jam Keberangkatan : </label>
+                <input type="time" id="jam" class="form-control">
+            </div>
+            <p style="display: none; background-color: red; color: white;"> Data tidak valid</p><br>
+            <div class="form-group">
+                <label>Tujuan Keberangkatan : </label>
+                <select id="tujuan" class="form-control">
+                    <option value="">Pilih tujuan</option>
+                    <option value="1">Jakarta</option>
+                    <option value="2">Depok</option>
+                    <option value="3">Tanggerang</option>
+                </select>
+            </div>
+            <p style="display: none; background-color: red; color: white;"> Data tidak valid</p><br>
+            <div class="form-group">
+                <label>Jumlah Tiket : </label>
+                <input type="number" id="jumlah" class="form-control" min="1" max="10">
+            </div>
+            <p style="display: none; background-color: red; color: white;"> Data tidak valid</p><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div id="raja"></div>
+    <script>
+        function validateForm() {
+            let error = document.getElementsByTagName("p")
+            let nama_pelanggan = document.getElementById("nama").value;
+            let email = document.getElementById("email").value;
+            let jam_keberangkatan = document.getElementById("jam").value;
+            let tujuan_keberangkatan = document.getElementById("tujuan").value;
+            let jumlah_tiket = document.getElementById("jumlah").value;
+            let raja = document.getElementById("raja");
+            let valid = true
+            for (let i = 0; i < 5; i++) {
+                error[i].style.display = "none";
+
+            }
+            
+            if (document.forms["formPendaftaran"]["nama"].value == "") {
+                error[0].style.display = "block"
+                document.forms["formPendaftaran"]["nama"].focus();
+                valid = false
+
+            }
+            
+            if (document.forms["formPendaftaran"]["email"].value == "") {
+                error[1].style.display = "block"
+                document.forms["formPendaftaran"]["email"].focus();
+                valid = false
+            }
+            
+            if (document.forms["formPendaftaran"]["jam"].value == "") {
+                error[2].style.display = "block"
+                document.forms["formPendaftaran"]["jam"].focus();
+                valid = false
+            }
+            if (document.forms["formPendaftaran"]["tujuan"].value == "") {
+                error[3].style.display = "block"
+                document.forms["formPendaftaran"]["tujuan"].focus();
+                valid = false
+            }
+            if (document.forms["formPendaftaran"]["jumlah"].value == "") {
+                error[4].style.display = "block"
+                document.forms["formPendaftaran"]["jumlah"].focus();
+                valid = false
+            }
+            
+            if (valid == true) {
+                raja.innerHTML = "<p>Nama Pelanggan :" + nama_pelanggan + "</p>"
+                    + "<p>Email : " + email + "</p>"
+                    + "<p>Jam Keberangkatan : " + jam_keberangkatan + "</p>"
+                    + "<p>Tujuan Keberangkatan : " + tujuan_keberangkatan + "</p>"
+                    + "<p>Jumlah tiket :" + jumlah_tiket + "</p>";
+
+            }else{
+                raja.innerHTML = ""
+            }
+            return false
+        }
+    </script>
+</body>
+
+</html>

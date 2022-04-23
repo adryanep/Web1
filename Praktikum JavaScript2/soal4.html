@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <title>
+        Image Picker
+    </title>
+</head>
+
+<body>
+    <div class="container">
+    <select id="picker" onchange="pick()" name="country">
+        <option value="indonesia">Indonesia</option>
+        <option value="malaysia">Malaysia</option>
+        <option value="filipina">Filipina</option>
+        <option value="vietnam">Vietnam</option>
+        <option value="thailand">Thailand</option>
+    </select>
+    </div>
+    <div class="images">
+        <img src="" id="image">
+    </div>
+        <script>
+            function pick(){
+                let picked_option = document.getElementById("picker").value
+                let image = document.getElementById("image")
+                if (picked_option == "indonesia") {
+                    image.src = "indonesia.jpg"
+                    alert("Indonesia.jpg")
+                } else if (picked_option == "malaysia") {
+                    image.src = "malaysia.png"
+                    alert("Malaysia.png")
+                } else if (picked_option == "filipina") {
+                    image.src = "filipina.png"
+                    alert("Filipina.png")
+                } else if (picked_option == "vietnam") {
+                    image.src = "vietnam.jpg"
+                    alert("vietnam.jpg")
+                } else if (picked_option == "thailand") {
+                    image.src = "thailand.jpg"
+                    alert("Thailand.png")
+                }
+            }
+        </script>
+</body>
+</html>

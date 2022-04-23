@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id"></html>
+<head>
+    <title>Aplikasi chat</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 10px;
+        }
+        body{
+            display: flex;
+            justify-content: left;
+        }
+
+        .app {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1%;
+            width: 40%;
+            height: 70%;
+            border: 1px solid black;
+            border-radius: 5%;
+        }
+
+        .chatbox {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 85%;
+            padding: 1%;
+            background-color: white;
+            overflow-y: scroll;
+        }
+
+        .chat-send {
+            align-self: flex-end;
+            background-color: whitesmoke;
+            color: black;
+            border-radius: 3px;
+            max-width: 80%;
+            height: auto;
+            padding: 1%;
+            margin-top: 5px;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: row;
+            height: 10%;
+        }
+
+        .message input {
+            border: none;
+            width: 70%;
+        }
+
+        .message input:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .message button {
+            width: 30%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div id="chat-a" class="chatbox">
+        </div>
+        <div class="message">
+            <input id="message-a" type="text" onkeypress="checkKey(event, 'a')">
+            <button id="send" onclick="send('a')">Kirim</button>
+        </div>
+    </div>
+    <h3>Aplikasi Chat Sederhana</h3>
+    <script>
+        function send(sender) {
+            let receiver = '';
+            if (sender == 'a'){
+                receiver = 'b';
+            }else{
+                receiver = 'a';
+            }
+            let sender_chatbox = document.getElementById("chat-"+sender);
+            let message = document.getElementById("message-"+sender);
+            let text_send = document.createTextNode(message.value)
+
+            let sender_chat = document.createElement("div");
+            sender_chat.classList.add("chat-send");
+            sender_chat.appendChild(text_send);
+
+            sender_chatbox.appendChild(sender_chat);
+            sender_chatbox.scrollTop = sender_chatbox.scrollHeight;
+
+            message.value = "";
+        }
+
+        function checkKey(event, sender) {
+            let key = event.keyCode
+            if (key == 13) {
+                send(sender)
+            }
+        }
+    </script>
+</body>
